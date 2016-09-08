@@ -3,7 +3,7 @@ global.pd = console.log.bind(console)
 const app = express()
 
 app.get('/', (req, res) => {
-  res.json({b: 2})
+  res.json({b: 'staging'})
 })
 
 app.listen(process.env.PORT, () => {
