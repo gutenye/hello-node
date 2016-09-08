@@ -6,8 +6,6 @@ app.get('/', (req, res) => {
   res.json({a: 1})
 })
 
-app.listen(3003, () => {
-  console.log('> http://localhost:3003')
+app.listen(process.env.PORT, () => {
+  console.log(`> http://localhost:${process.env.PORT}`)
 })
-
-
