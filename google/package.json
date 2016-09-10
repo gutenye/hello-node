@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gutenye/hello-google/issues"
   },
-  "homepage": "https://github.com/gutenye/hello-google#readme"
+  "homepage": "https://github.com/gutenye/hello-google#readme",
+  "dependencies": {
+    "google-cloud": ""
+  }
 }
