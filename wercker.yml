@@ -8,13 +8,11 @@ deploy:
   box: node
   steps:
   - internal/docker-push:
+      repository: gutenye/hello-node
+      tag: $WERCKER_GIT_COMMIT
+      registry: https://registry.hub.docker.com
       username: $DOCKER_USERNAME
       password: $DOCKER_PASSWORD
-      cmd: npm start
-      tag: $WERCKER_GIT_COMMIT
-      ports: "5000"
-      repository: gutenye/hello-node
-      registry: https://registry.hub.docker.com
 
   # Run this to create the rc and service
   initialize:
