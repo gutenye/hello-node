@@ -1,8 +1,6 @@
 build:
   box: node
   steps:
-    - echo $DOCKER_USERNAME
-    - echo $DOCKER_PASSWORD
     - npm-install
     - npm-test
 
@@ -12,7 +10,6 @@ deploy:
   - internal/docker-push:
       repository: gutenye/hello-node
       tag: $WERCKER_GIT_COMMIT
-      registry: https://registry.hub.docker.com
       username: $DOCKER_USERNAME
       password: $DOCKER_PASSWORD
 
