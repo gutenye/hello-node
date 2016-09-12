@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: hello-node
+  name: hello-node
+spec:
+  containers:
+      image: node
+      name: hello-node
+      ports:
+        - containerPort: 3000
+          name: hello-node
