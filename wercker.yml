@@ -1,6 +1,8 @@
 build:
   box: node
   steps:
+    - echo $DOCKER_USERNAME
+    - echo $DOCKER_PASSWORD
     - npm-install
     - npm-test
 
