@@ -13,8 +13,8 @@ deploy:
       cmd: npm start
       tag: $WERCKER_GIT_COMMIT
       ports: "5000"
-      repository: docker.io/gutenye/hello-node
-      registry: https://docker.io
+      repository: gutenye/hello-node
+      registry: https://registry.hub.docker.com
 
   # Run this to create the rc and service
   initialize:
