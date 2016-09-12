@@ -3,39 +3,40 @@ build:
   steps:
     - npm-install
     - npm-test
+
 deploy:
   box: node
-    steps:
-    - internal/docker-push:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
-        cmd: npm start
-        tag: $WERCKER_GIT_COMMIT
-        ports: "5000"
-        repository: docker.io/gutenye/hello-node
-        registry: https://docker.io
+  steps:
+  - internal/docker-push:
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
+      cmd: npm start
+      tag: $WERCKER_GIT_COMMIT
+      ports: "5000"
+      repository: docker.io/gutenye/hello-node
+      registry: https://docker.io
 
-    # Run this to create the rc and service
-    initialize:
-    - kubectl:
-        server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
-        insecure-skip-tls-verify: true
-        command: create -f hello.yaml
+  # Run this to create the rc and service
+  initialize:
+  - kubectl:
+      server: $KUBERNETES_MASTER
+      username: $KUBERNETES_USERNAME
+      password: $KUBERNETES_PASSWORD
+      insecure-skip-tls-verify: true
+      command: create -f hello.yaml
 
-    - kubectl:
-        server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
-        insecure-skip-tls-verify: true
-        command: create -f hello-service.yaml
+  - kubectl:
+      server: $KUBERNETES_MASTER
+      username: $KUBERNETES_USERNAME
+      password: $KUBERNETES_PASSWORD
+      insecure-skip-tls-verify: true
+      command: create -f hello-service.yaml
 
-    rolling-update:
-    - kubectl:
-        server: $KUBERNETES_MASTER
-        username: $KUBERNETES_USERNAME
-        password: $KUBERNETES_PASSWORD
-        insecure-skip-tls-verify: true
-        command: rolling-update hello
-        image: docker.io/gutenye/hello-node:$WERCKER_GIT_COMMIT
+  rolling-update:
+  - kubectl:
+      server: $KUBERNETES_MASTER
+      username: $KUBERNETES_USERNAME
+      password: $KUBERNETES_PASSWORD
+      insecure-skip-tls-verify: true
+      command: rolling-update hello
+      image: docker.io/gutenye/hello-node:$WERCKER_GIT_COMMIT
