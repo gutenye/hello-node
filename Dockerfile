@@ -1,4 +1,4 @@
-FROM gutenye/node
+FROM node
 
 COPY package.json /app
 RUN npm install
