@@ -1,0 +1,9 @@
+version: "2"
+services:
+  server:
+    build: .
+    image: hello-node
+    ports:
+      - "3003:80"
+    environment:
+      PORT: 80
