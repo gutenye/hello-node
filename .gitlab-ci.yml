@@ -15,11 +15,11 @@ test:
 docker:
   image: docker
   services:
-    - dokcer:dind
+    - docker:dind
   stage: deploy
   script:
     - docker info
-    - docker built -t hello-node .
+    - docker build -t hello-node .
 
 release:
   stage: deploy
