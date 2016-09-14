@@ -19,9 +19,9 @@ docker:
   stage: deploy
   script:
     - docker build -t hello-node .
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker tag hello-node registry.cn-hangzhou.aliyuncs.com/gutenye/hello
-    - docker push registry.cn-hangzhou.aliyuncs.com/gutenye/hello
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+    - docker tag hello-node $DOCKER_REGISTRY/gutenye/hello-node:2
+    - docker push $DOCKER_REGISTRY/gutenye/hello-node:2
   image: docker
   services:
     - docker:dind
