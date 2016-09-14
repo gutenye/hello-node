@@ -13,6 +13,9 @@ test:
    - npm test
 
 docker:
+  image: docker
+  services:
+    - dokcer:dind
   stage: deploy
   script:
     - docker info
