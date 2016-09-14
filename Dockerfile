@@ -1,6 +1,6 @@
 FROM registry-internal.cn-hangzhou.aliyuncs.com/gutenye/node
 
-RUN cp package.tgz /tmp
+COPY package.tgz /tmp
 RUN tar -xf /tmp/package.tgz
 RUN cp package.json /app
 RUN npm install
