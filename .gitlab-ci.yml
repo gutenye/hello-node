@@ -2,10 +2,15 @@ image: node
 cache:
   paths:
   - node_modules
-stages:
-  - test
-test_async:
+test:
   stage: test
   script:
    - npm install
    - npm test
+release:
+  stage: deploy
+  script:
+    - mkdir dist && echo 1 > dist/dist.txt
+  artifacts:
+    paths:
+      - dist
