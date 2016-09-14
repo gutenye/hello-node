@@ -1,25 +1,30 @@
-image: node
-cache:
-  paths:
-  - node_modules
 stages:
   - test
   - deploy
+before_script:
+  - source scripts/init-ci
 
 test:
   stage: test
   script:
    - npm install
    - npm test
+  image: node
+  cache:
+    paths:
+    - node_modules
+  environment: testing
 
 docker:
+  stage: deploy
+  script:
+    - docker build -t hello-node .
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker tag hello-node registry.cn-hangzhou.aliyuncs.com/gutenye/hello
+    - docker push registry.cn-hangzhou.aliyuncs.com/gutenye/hello
   image: docker
   services:
     - docker:dind
-  stage: deploy
-  script:
-    - docker info
-    - docker build -t hello-node .
 
 release:
   stage: deploy
@@ -28,3 +33,4 @@ release:
   artifacts:
     paths:
       - dist
+  environment: staging
