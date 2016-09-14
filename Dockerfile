@@ -1,12 +1,9 @@
-#FROM gutenye/node
-FROM registry-internal.cn-hangzhou.aliyuncs.com/gutenye/node
+FROM node
+#FROM registry-internal.cn-hangzhou.aliyuncs.com/gutenye/node
 
-RUN pwd
-RUN ls
 RUN echo 1 > a.txt
-RUN cat a.txt
-RUN echo 1 > /root/a.txt
-RUN cat /root/a.txt
+RUN cp a.txt c.txt
+#RUN lstat a.txt
 COPY a.txt b.txt
 
 #COPY package.tgz /tmp
