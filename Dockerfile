@@ -1,8 +1,9 @@
 FROM registry-internal.cn-hangzhou.aliyuncs.com/gutenye/node
 
-RUN ls
-RUN tar -xvf package.tgz
-RUN ls
+COPY package.tgz /tmp
+RUN tar -xvf /tmp/package.tgz -C
+RUN cp /tmp/boot-api.war /usr/local/tomcat/webapps/tmp
+
 COPY package.json /app
 RUN npm install
 COPY . /app
