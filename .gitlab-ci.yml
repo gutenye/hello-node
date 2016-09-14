@@ -2,11 +2,22 @@ image: node
 cache:
   paths:
   - node_modules
+stages:
+  - test
+  - deploy
+
 test:
   stage: test
   script:
    - npm install
    - npm test
+
+docker:
+  stage: deploy
+  script:
+    - docker info
+    - docker built -t hello-node .
+
 release:
   stage: deploy
   script:
