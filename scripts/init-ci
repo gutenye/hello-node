@@ -1,5 +1,1 @@
 #!/bin/sh
-
-docker_test() {
-  echo 1
-}
