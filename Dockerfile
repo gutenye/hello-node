@@ -1,4 +1,4 @@
-FROM gutenye/node
+FROM registry-internal.cn-hangzhou.aliyuncs.com/gutenye/node
 
 COPY package.json /app
 RUN npm install
