@@ -12,7 +12,8 @@ test:
    - npm test
    - mkdir foo && echo 1 > a.txt
   artifacts:
-    - foo
+    paths:
+      - foo
   cache:
     paths:
     - node_modules
