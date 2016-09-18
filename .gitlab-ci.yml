@@ -1,5 +1,6 @@
 stages:
   - test
+  - build
   - deploy
 before_script:
   - source scripts/init-ci
@@ -9,11 +10,20 @@ test:
   script:
    - npm install
    - npm test
-  image: node
+   - mkdir foo && echo 1 > a.txt
+  artifacts:
+    - foo
   cache:
     paths:
     - node_modules
   environment: testing
+  image: node
+
+build:
+  stage: build
+  script:
+    - ls
+    - cat foo/a.txt
 
 docker:
   stage: deploy
