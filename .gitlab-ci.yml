@@ -10,7 +10,7 @@ test:
   script:
    - npm install
    - npm test
-   - mkdir foo && echo 1 > a.txt
+   - mkdir foo && echo 1 > foo/a.txt
   artifacts:
     paths:
       - foo
