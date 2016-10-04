@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+PORT=3005
+
 main() {
-  PORT=3003 npm start
+  PORT=$PORT npm start
 }
 
 build() {
@@ -13,7 +15,7 @@ push() {
 }
 
 run() {
-  docker run --name hello-node -e PORT=80 -p 3003:80 -d  gutenye/hello-node
+  docker run --rm --name hello-node -p $PORT:80  gutenye/hello-node
 }
 
 case "$1" in

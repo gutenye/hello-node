@@ -5,4 +5,5 @@ RUN npm install
 COPY . /app
 
 EXPOSE 80
-CMD [ "npm", "start" ]
+#CMD ["node", "app.js"]
+CMD [ "node", "/app/node_modules/babel-cli/lib/_babel-node", "app.js" ]
