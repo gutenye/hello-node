@@ -8,12 +8,9 @@ before_script:
 test:
   stage: test
   script:
+   - ls -l /var/run/
    - ls -l /var/run/docker.sock
-   - ls -l /var/run/docker.sock
-   - ls -l /var/run/docker.sock
-   - ls -l /var/run/docker.sock
-   - ls -l /var/run/docker.sock
-   - ls -l /var/run/docker.sock
+   - ls -ld /var/run/docker.sock
    - docker ps
   image: docker
   #services:
