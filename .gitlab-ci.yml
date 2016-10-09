@@ -8,17 +8,11 @@ before_script:
 test:
   stage: test
   script:
-   - npm install
-   - npm test
-   - mkdir foo && echo 1 > foo/a.txt
-  artifacts:
-    paths:
-      - foo
-  cache:
-    paths:
-    - node_modules
-  environment: testing
-  image: node
+   - ls -l /var/run/docker.sock  || true
+   - exit
+  image: docker
+  services:
+    - docker:dind
 
 build:
   stage: build
