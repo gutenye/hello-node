@@ -8,8 +8,8 @@ before_script:
 test:
   stage: test
   script:
-   - ls -l /var/run/docker.sock
-   - docker info
+   - ls -l /run
+   - docker ps
   image: docker
   #services:
   #  - docker:dind
