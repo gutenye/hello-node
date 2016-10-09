@@ -1,43 +1,11 @@
 stages:
-  - test
   - build
-  - deploy
-before_script:
-  - source scripts/init-ci
-
-test:
-  stage: test
-  script:
-   - ls -l /var/run/
-   - ls -l /var/run/docker.sock
-   - ls -ld /var/run/docker.sock
-   - docker ps
-  image: docker
-  #services:
-  #  - docker:dind
 
 build:
   stage: build
-  script:
-    - ls
-    - cat foo/a.txt
-
-docker:
-  stage: deploy
   script:
     - docker build -t hello-node .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
     - docker tag hello-node $DOCKER_REGISTRY/gutenye/hello-node:2
     - docker push $DOCKER_REGISTRY/gutenye/hello-node:2
   image: docker
-  services:
-    - docker:dind
-
-release:
-  stage: deploy
-  script:
-    - mkdir dist && echo 1 > dist/dist.txt
-  artifacts:
-    paths:
-      - dist
-  environment: staging
