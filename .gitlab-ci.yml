@@ -9,10 +9,10 @@ test:
   stage: test
   script:
    - ls -l /var/run/docker.sock
-   - docker ps
+   - docker info
   image: docker
-  services:
-    - docker:dind
+  #services:
+  #  - docker:dind
 
 build:
   stage: build
